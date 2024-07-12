@@ -1,4 +1,10 @@
 # Synchronising-Wand
+- [Introduction](https://github.com/YuxuanHan0326/Synchronising-Wand#introduction)
+- [3D Design Overview](https://github.com/YuxuanHan0326/Synchronising-Wand#3d-design-overview)
+- [PCB Design](https://github.com/YuxuanHan0326/Synchronising-Wand#pcb-design)
+- [Basic Controls](https://github.com/YuxuanHan0326/Synchronising-Wand#basic-control)
+- [Flash the Firmware](https://github.com/YuxuanHan0326/Synchronising-Wand#flash-the-firmware)
+- [Configure Parameters of the Firmware](https://github.com/YuxuanHan0326/Synchronising-Wand#configure-parameters-of-the-firmware)
 
 ## Introduction
 The *Synchronising Wand* is an open-source hardware solution for synchronising multiple wireless inertial measurement unit sensors (IMU) using their onboard magnetometers. The device combines an ESP32-S3 micro-controller unit with an electromagnetic generator to create an encoded electromagnetic event which can be used to synchronise multiple IMU devices. The device also includes an onboard IMU, allowing the user to track the motion of the wand as well as perform a kinetic synchronising event.
@@ -7,6 +13,9 @@ The device includes an OLED display and 4 configuable push buttons for user inte
 
 ## 3D Design Overview
 ![plot](./Resources/CAD_design.jpg)
+
+## Screen Overview
+![plot](./Resources/Screen_Overview.png)
 
 ## PCB Design
 The PCB of the synchronising wand is designed using the open sourced PCB design software *KiCad*. The PCB files are completely open-sourced.
@@ -24,7 +33,7 @@ This device uses a 4 layer pcb, with a stack up of Signal-GND-GND-Signal.
 The physical stack up of the pcb board is shown below:
 ![plot](./Resources/PCB_Physical_Stackup.png)
 
-## Basic Control
+## Basic Controls
 - Press "MENU" button to switch between menus.
 - Press "S-MENU" button to switch submenus.
 - Press "ACT" button to activate / deactive functions.
