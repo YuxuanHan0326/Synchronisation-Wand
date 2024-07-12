@@ -1,6 +1,7 @@
 # Synchronising-Wand
 - [Introduction](https://github.com/YuxuanHan0326/Synchronising-Wand#introduction)
 - [3D Design Overview](https://github.com/YuxuanHan0326/Synchronising-Wand#3d-design-overview)
+- [Screen Overview](https://github.com/YuxuanHan0326/Synchronising-Wand#screen-overview)
 - [PCB Design](https://github.com/YuxuanHan0326/Synchronising-Wand#pcb-design)
 - [Basic Controls](https://github.com/YuxuanHan0326/Synchronising-Wand#basic-control)
 - [Flash the Firmware](https://github.com/YuxuanHan0326/Synchronising-Wand#flash-the-firmware)
