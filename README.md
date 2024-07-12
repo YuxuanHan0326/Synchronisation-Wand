@@ -1,4 +1,4 @@
-# Synchronising-Wand
+# Synchronisation-Wand
 - [Introduction](https://github.com/YuxuanHan0326/Synchronising-Wand#introduction)
 - [3D Design Overview](https://github.com/YuxuanHan0326/Synchronising-Wand#3d-design-overview)
 - [Screen Overview](https://github.com/YuxuanHan0326/Synchronising-Wand#screen-overview)
@@ -8,7 +8,7 @@
 - [Configure Parameters of the Firmware](https://github.com/YuxuanHan0326/Synchronising-Wand#configure-parameters-of-the-firmware)
 
 ## Introduction
-The *Synchronising Wand* is an open-source hardware solution for synchronising multiple wireless inertial measurement unit sensors (IMU) using their onboard magnetometers. The device combines an ESP32-S3 micro-controller unit with an electromagnetic generator to create an encoded electromagnetic event which can be used to synchronise multiple IMU devices. The device also includes an onboard IMU, allowing the user to track the motion of the wand as well as perform a kinetic synchronising event.
+The *Synchronisation Wand* is an open-source hardware solution for synchronising multiple wireless inertial measurement unit sensors (IMU) using their onboard magnetometers. The device combines an ESP32-S3 micro-controller unit with an electromagnetic generator to create an encoded electromagnetic event which can be used to synchronise multiple IMU devices. The device also includes an onboard IMU, allowing the user to track the motion of the wand as well as perform a kinetic synchronising event.
 
 The device includes an OLED display and 4 configuable push buttons for user interface to enhance the usability of the system. The device uses SD card as storage medium to store the synchronising data and onboard IMU data. WiFi is used to synchronise the RTC using SNTP from configurable NTP servers, e.g. *pool.ntp.org*.
 
@@ -19,7 +19,7 @@ The device includes an OLED display and 4 configuable push buttons for user inte
 ![plot](./Resources/Screen_Overview.png)
 
 ## PCB Design
-The PCB of the synchronising wand is designed using the open sourced PCB design software *KiCad*. The PCB files are completely open-sourced.
+The PCB of the synchronisation wand is designed using the open sourced PCB design software *KiCad*. The PCB files are completely open-sourced.
 
 ### Schematic
 ![plot](./Resources/ESP32S3_PCB_V1_Schematic.png)
