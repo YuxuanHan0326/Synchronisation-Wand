@@ -1,0 +1,10 @@
+idf_component_register(
+    SRCS
+        "time_client.c"
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        log
+        esp_netif
+        lwip
+)
