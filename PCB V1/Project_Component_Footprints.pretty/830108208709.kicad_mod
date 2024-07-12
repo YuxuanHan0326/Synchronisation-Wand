@@ -1,0 +1,236 @@
+(footprint "830108208709"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "830108208709-2")
+	(tags "Crystal or Oscillator")
+	(property "Reference" "Y**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "ae8cd43d-f2e4-4c60-acb6-eadf687c8014")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "830108208709"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "0c143dc4-e14a-4673-906d-1de09a16144e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" "830108208709"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "29158afc-c8f3-4fd6-a1de-641c950c5cf8")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "de623a9c-21b6-43b2-b8f9-12de9f68d610")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "367c4f62-1d48-479c-aec7-72f7409624bb")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -0.825 1.5)
+		(end -0.825 1.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "ac814367-3228-43b3-8af0-3914e63cc677")
+	)
+	(fp_line
+		(start -0.825 1.6)
+		(end -0.825 1.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d43064d4-4de2-4b11-941d-0057641ed8ca")
+	)
+	(fp_arc
+		(start -0.825 1.5)
+		(mid -0.775 1.55)
+		(end -0.825 1.6)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "72fda6f0-7cba-4cb6-bbf9-cf7fd7d9eaa6")
+	)
+	(fp_arc
+		(start -0.825 1.6)
+		(mid -0.875 1.55)
+		(end -0.825 1.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "04962713-ed5b-4bc6-b8f2-b98ac4266b3b")
+	)
+	(fp_line
+		(start -2.325 -2.063)
+		(end 2.325 -2.063)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3f789fde-9176-4c66-ba22-6ad06ba66edc")
+	)
+	(fp_line
+		(start -2.325 2.063)
+		(end -2.325 -2.063)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "75795ff2-8d6e-4c9f-a5e4-9ba074aeec24")
+	)
+	(fp_line
+		(start 2.325 -2.063)
+		(end 2.325 2.063)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "ec39df6d-caa5-4a1c-93a9-ec130f0025c8")
+	)
+	(fp_line
+		(start 2.325 2.063)
+		(end -2.325 2.063)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a9953e8b-ea43-4546-b0dc-e8a4a73fc7f2")
+	)
+	(fp_line
+		(start -1.25 -1)
+		(end 1.25 -1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "fbcb0365-0cc5-4084-95f9-a0630ad7ea4e")
+	)
+	(fp_line
+		(start -1.25 1)
+		(end -1.25 -1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "976ab5dd-4598-4f1b-a69d-2930ec0fc814")
+	)
+	(fp_line
+		(start 1.25 -1)
+		(end 1.25 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b61b4aa4-5da4-4622-a532-84fbdf1f9954")
+	)
+	(fp_line
+		(start 1.25 1)
+		(end -1.25 1)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "8b042985-c2d8-4513-925e-47f367169077")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "c5b2c312-7f53-4c87-a0e9-21afb06d79c4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -0.825 0.613 90)
+		(size 0.9 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "7b4ac0e2-9c8c-4ff0-a9ef-e9266bf58d61")
+	)
+	(pad "2" smd rect
+		(at 0.825 0.613 90)
+		(size 0.9 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "a1da0417-f249-482d-aa25-50cf89bab110")
+	)
+	(pad "3" smd rect
+		(at 0.825 -0.613 90)
+		(size 0.9 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "94aabe44-d47c-4109-b0e2-4f4ea9a5d616")
+	)
+	(pad "4" smd rect
+		(at -0.825 -0.613 90)
+		(size 0.9 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "47bf7d29-5d46-4f7d-9b62-faa2f15bcda1")
+	)
+	(model "${PROJECT_COMPONENT_3D_MODELS}/830108208709.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

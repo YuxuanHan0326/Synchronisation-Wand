@@ -1,0 +1,5 @@
+(version 1)
+(rule silk_pad_clearance
+   (constraint silk_clearance (min 0.15mm))
+   (condition "A.Type == '*Text' && B.Type == 'Pad'")
+   (severity error))
