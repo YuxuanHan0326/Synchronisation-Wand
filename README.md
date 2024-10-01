@@ -1,11 +1,5 @@
 # Synchronisation-Wand
-- [Introduction](https://github.com/YuxuanHan0326/Synchronisation-Wand#introduction)
-- [3D Design Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand#3d-design-overview)
-- [Screen Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand#screen-overview)
-- [PCB Design](https://github.com/YuxuanHan0326/Synchronisation-Wand#pcb-design)
-- [Basic Controls](https://github.com/YuxuanHan0326/Synchronisation-Wand#basic-controls)
-- [Flash the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand#flash-the-firmware)
-- [Configure Parameters of the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand#configure-parameters-of-the-firmware)
+
 
 ## Introduction
 The *Synchronisation Wand* is an open-source hardware solution for synchronising multiple wireless inertial measurement unit sensors (IMU) using their onboard magnetometers. The device combines an ESP32-S3 micro-controller unit with an electromagnetic generator to create an encoded electromagnetic event which can be used to synchronise multiple IMU devices. The device also includes an onboard IMU, allowing the user to track the motion of the wand as well as perform a kinetic synchronising event.
