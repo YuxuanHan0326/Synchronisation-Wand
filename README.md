@@ -1,5 +1,6 @@
 # Synchronisation-Wand
 - [Introduction](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#introduction)
+- [Related Publications](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main#related-publications)
 - [3D Design Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#3d-design-overview)
 - [Screen Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#screen-overview)
 - [PCB Design](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#pcb-design)
@@ -15,7 +16,7 @@ The device includes an OLED display and 4 configuable push buttons for user inte
 ## Related Publications
 For further detail of this project:
 
--[TheWand Chooses the IMU - Open Source Hardware for SynchronisingWearables using Magnetometer](https://dl.acm.org/doi/10.1145/3675094.3678485)
+-[The Wand Chooses the IMU - Open Source Hardware for Synchronising Wearables using Magnetometer](https://dl.acm.org/doi/10.1145/3675094.3678485)
 
 For how the electromagnetic synchronising method works:
 
