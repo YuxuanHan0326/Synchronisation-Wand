@@ -1,6 +1,6 @@
 # Synchronisation-Wand
 - [Introduction](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#introduction)
-- [Related Publications](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main#related-publications)
+- [Related Publications](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#related-publications)
 - [3D Design Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#3d-design-overview)
 - [Screen Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#screen-overview)
 - [PCB Design](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#pcb-design)
