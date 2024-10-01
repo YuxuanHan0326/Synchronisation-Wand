@@ -16,11 +16,11 @@ The device includes an OLED display and 4 configuable push buttons for user inte
 ## Related Publications
 For further detail of this project:
 
--[The Wand Chooses the IMU - Open Source Hardware for Synchronising Wearables using Magnetometer](https://dl.acm.org/doi/10.1145/3675094.3678485)
+- [The Wand Chooses the IMU - Open Source Hardware for Synchronising Wearables using Magnetometer](https://dl.acm.org/doi/10.1145/3675094.3678485)
 
 For how the electromagnetic synchronising method works:
 
--[A magnetometer-based method for in-situ syncing of wearable inertial measurement units](https://doi.org/10.3389/fcomp.2024.1385392)
+- [A magnetometer-based method for in-situ syncing of wearable inertial measurement units](https://doi.org/10.3389/fcomp.2024.1385392)
 
 ## 3D Design Overview
 ![plot](./Resources/CAD_design.jpg)
