@@ -14,7 +14,17 @@
 #include "driver/gptimer.h"
 #include "esp_wifi.h"
 #include "esp_netif.h"
+#include "esp_nimble_hci.h"
+#include "nimble/nimble_port.h"
+#include "nimble/nimble_port_freertos.h"
+#include "host/ble_hs.h"
+#include "services/gap/ble_svc_gap.h"
+#include "services/gatt/ble_svc_gatt.h"
+#include "ble_gatt.h"
+#include "ff.h"
+#include "FreeRTOSConfig.h"
 
+#include "main.h"
 #include "u8g2_esp32_hal.h"
 #include "wifi_connect.h"
 #include "time_client.h"
@@ -22,97 +32,8 @@
 #include "icm20948.h"
 #include "board_config.h"
 #include "user_config.h"
+#include "ble_gatt.h"
 
-#define SNTP_SYNC_TIMEOUT_MS 4000
-#define WIFI_CONNECT_TIMEOUT_MS 10000
-#define BATTERY_VOLTAGE_SAMPLE_PERIOD 15000
-
-#define MENU_Y 11
-#define HLINE_Y 14
-#define PAGE_SCROLLER_INITIAL_Y 18
-#define SUB1_Y 30
-#define SUB2_Y 46
-#define SUB3_Y 62
-#define SUBMENU_INDENT 9
-#define VALUE_INDENT 5
-#define CURSOR_INDENT 0
-#define FONT_MENU u8g2_font_7x13B_mr
-#define FONT_SUBMENU u8g2_font_6x13_mr
-#define FONT_VALUE u8g2_font_6x10_mr
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-
-#define REFRESH_EVENT_FORCE_REFRESH 1
-#define REFRESH_EVENT_TIME_CHANGE 1 << 1
-#define REFRESH_EVENT_DATE_CHANGE 1 << 2
-#define REFRESH_EVENT_TZ_CHANGE 1 << 3
-#define REFRESH_EVENT_AUTOSYNC_STATUS_CHANGE 1 << 4
-#define REFRESH_EVENT_WIFI_STATUS_CHANGE 1 << 5
-#define REFRESH_EVENT_CHARGE_STATUS_CHANGE 1 << 6
-#define REFRESH_EVENT_SYNC_COUNT_CHANGE 1 << 7
-#define REFRESH_EVENT_BATTERY_VOLTAGE_CHANGE 1 << 8
-#define REFRESH_EVENT_SYNC_SIGNAL_PARAMETER_CHANGE 1 << 9
-#define REFRESH_EVENT_ONBOARD_IMU_STATUS_CHANGE 1 << 10
-#define REFRESH_EVENT_ONBOARD_IMU_SAMPLE_PERIOD_CHANGE 1 << 11
-#define REFRESH_EVENT_START_STOP_SYNCING 1 << 12
-#define REFRESH_EVENT_SD_CONNECTION_STATUS_CHANGE 1 << 13
-#define REFRESH_EVENT_SD_CAPACITY_INFO_CHANGE 1 << 14
-#define REFRESH_EVENT_WIFI_RSSI_CHANGE 1 << 15
-
-#define ICON_BATTERY_0 32
-#define ICON_BATTERY_25 33
-#define ICON_BATTERY_50 34
-#define ICON_BATTERY_75 35
-#define ICON_BATTERY_100 36
-#define ICON_BATTERY_CHG 37
-#define ICON_WIFI_CONNECTED_GOOD 38
-#define ICON_WIFI_CONNECTED_WEAK 39
-#define ICON_WIFI_CONNECTED_POOR 40
-#define ICON_BT_CONNECTED 41
-
-// Typedefs
-typedef struct menu
-{
-    char name[15];
-    struct menu *next_menu;
-    struct submenu *submenu_ptr;
-    uint8_t pageScroller_length;
-} menu_t;
-
-typedef struct submenu
-{
-    char name[20];
-    char value[20];
-    uint32_t key;
-    struct submenu *next_submenu_ptr;
-    void (*function_ptr)(void);
-} submenu_t;
-
-typedef struct system_status
-{
-    uint16_t sync_count;
-    uint16_t sync_num;
-    uint16_t poi;
-    float maximum_sync_error;
-    float target_imu_sample_period;
-    float sync_signal_pulse_width;
-    float sync_signal_duration;
-    bool onboard_imu_status;
-    uint16_t onboard_imu_sample_period;
-    bool wifi_status;
-    int8_t wifi_RSSI;
-    bool BLE_status;
-    bool sntp_status;
-    bool is_syncing;
-    bool sending_sync_signal;
-    bool sd_connected;
-    uint8_t charging_status; // 1 Completed; 2 Charging; 3 R/Fault; 4 NR/Fault
-    float battery_voltage;
-    uint8_t battery_estimated_soc; // 1: 100%; 2: 75%; 3: 50%; 4: 25%; 5: 5%
-    char POSIX_tz[32];
-    char wifi_ssid[32];
-    char wifi_password[64];
-} system_status_t;
 
 // Function Declaration
 static void IRAM_ATTR gpio_isr_cb_TS(void *args);
@@ -132,6 +53,7 @@ static void ipv4_address_to_string(uint32_t addr, char *addr_string);
 static void refresh_WiFi_RSSI(void *params);
 static void menu_init(void);
 static void screen_refresh(void *params);
+static void update_screen_from_BLE_cb(uint8_t event);
 static void refresh_time(void *params);
 static void battery_voltage_sampling(void *params);
 static uint8_t get_number_of_submenus(submenu_t *submenu);
@@ -150,7 +72,7 @@ static void enter_deep_sleep(void);
 static esp_err_t icm20948_configure(icm20948_acce_fs_t acce_fs, icm20948_gyro_fs_t gyro_fs);
 void icm_read_task(void *params);
 static esp_err_t create_file_onboard_IMU_data(struct tm current_time);
-static void log_IMU_data(icm20948_acce_value_t acce, icm20948_gyro_value_t gyro);
+static void IRAM_ATTR log_IMU_data(icm20948_acce_value_t acce, icm20948_gyro_value_t gyro);
 
 // Global Variables
 u8g2_t u8g2;
@@ -170,7 +92,8 @@ system_status_t system_status = {
     .onboard_imu_status = 0,
     .wifi_status = 0,
     .wifi_RSSI = 0,
-    .BLE_status = 0,
+    .BLE_connection_status = 0,
+    .BLE_advertisement_status = 0,
     .sntp_status = 1,
     .sd_connected = 0,
     .POSIX_tz = DEFAULT_TZ,
@@ -190,22 +113,24 @@ uint8_t wifi_quality = 3; // 3: Good, 2: Weak; 3: Poor
 bool sleep_flag = 0;
 static icm20948_handle_t icm20948 = NULL;
 FILE *fptr_imu = NULL;
+int fdes_imu;
+uint16_t samples_collected_before_fsync = 0;
 
 // Screen related global variables
 // Front Menu
 submenu_t FM_sub_1 = {.name = " START SYNC ", .function_ptr = &start_stop_sync_group, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_START_STOP_SYNCING};
 submenu_t FM_sub_2 = {.name = "* SYNC IMU *", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_COUNT_CHANGE};
-submenu_t FM_sub_3 = {.name = " POI: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH};
-submenu_t FM_sub_4 = {.name = " Max. Error: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_PARAMETER_CHANGE};
-submenu_t FM_sub_5 = {.name = " TGT IMU T: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_PARAMETER_CHANGE};
-submenu_t FM_sub_6 = {.name = " Pulse W: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_PARAMETER_CHANGE};
-submenu_t FM_sub_7 = {.name = " SIG Dura: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_PARAMETER_CHANGE};
+submenu_t FM_sub_3 = {.name = " POI: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_POI_CHANGE};
+submenu_t FM_sub_4 = {.name = " Max. Error: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_MAX_SYNC_ERROR_CHANGE};
+submenu_t FM_sub_5 = {.name = " TGT IMU T: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_TARGET_IMU_SAMPLE_PERIOD_CHANGE};
+submenu_t FM_sub_6 = {.name = " Pulse W: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_PULSE_WIDTH_CHANGE};
+submenu_t FM_sub_7 = {.name = " SIG Dura: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_SYNC_SIGNAL_DURATION_CHANGE};
 submenu_t FM_sub_8 = {.name = " On Board IMU ", .function_ptr = &toggle_on_board_imu, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_ONBOARD_IMU_STATUS_CHANGE, .value = "OFF"};
 submenu_t FM_sub_9 = {.name = " IMU sample-T: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_ONBOARD_IMU_SAMPLE_PERIOD_CHANGE};
 menu_t front_menu = {.name = "FRONT MENU", .submenu_ptr = &FM_sub_1};
 // WiFi Menu
 submenu_t WiFi_sub_1 = {.name = " Status: ", .function_ptr = &wifi_connection_control, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_WIFI_STATUS_CHANGE, .value = "D/C"};
-submenu_t WiFi_sub_2 = {.name = " SSID: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH};
+submenu_t WiFi_sub_2 = {.name = " SSID: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_WIFI_SSID_CHANGE};
 submenu_t WiFi_sub_3 = {.name = " RSSI: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_WIFI_RSSI_CHANGE, .value = "N/A"};
 submenu_t WiFi_sub_4 = {.name = " Authmode: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_WIFI_STATUS_CHANGE, .value = "N/A"};
 submenu_t WiFi_sub_5 = {.name = " IP: ", .function_ptr = NULL, .key = REFRESH_EVENT_FORCE_REFRESH | REFRESH_EVENT_WIFI_STATUS_CHANGE, .value = "N/A"};
@@ -293,7 +218,11 @@ void app_main(void)
     ESP_ERROR_CHECK(gptimer_register_event_callbacks(gptimer, &cbs, NULL));
     ESP_ERROR_CHECK(gptimer_enable(gptimer)); // Enable Timer
     ESP_LOGI("GPTimer", "GPTimer Enabled");
-    xTaskCreate(&sync_finished_task, "sync_finished_task", 4096, NULL, 2, &sync_finished_notification_handler); // This task has higher priority than others
+    xTaskCreate(&sync_finished_task, "sync_finished_task", 4096, NULL, 3, &sync_finished_notification_handler); // This task has higher priority than others
+
+    // Start BLE
+    ESP_ERROR_CHECK(nvs_flash_init());
+    start_ble(&system_status, &update_screen_from_BLE_cb);
 
     // Mount SD card if detected
     prev_cd_gpio_status = gpio_get_level(PIN_SD_DETECT);
@@ -333,7 +262,7 @@ void app_main(void)
     ESP_LOGI("Charging IC", "Charging Status Detection ISR Installed");
 
     // Install ISR for SD Card Detect
-    xTaskCreate(SD_card_detect_task, "SD_card_detect_task", 4096, NULL, 2, &SD_card_detect_notification_handler);
+    xTaskCreate(SD_card_detect_task, "SD_card_detect_task", 4096, NULL, 3, &SD_card_detect_notification_handler);
     ESP_ERROR_CHECK(gpio_isr_handler_add(PIN_SD_DETECT, gpio_isr_cb_SD, NULL));
     ESP_LOGI("SDMMC", "SD Card Detection ISR Installed");
 
@@ -363,7 +292,7 @@ void app_main(void)
     ESP_LOGI("On-board IMU", "ICM20948 configuration successfull!");
     ESP_ERROR_CHECK(icm20948_sleep(icm20948)); // Put on_board imu to sleep
 
-    xTaskCreate(&icm_read_task, "icm read task", 4096, NULL, 1, &imu_read_suspend_handler);
+    xTaskCreate(&icm_read_task, "icm read task", 4096, NULL, 2, &imu_read_suspend_handler);
 
     // Start screen related tasks
     xTaskCreate(&refresh_time, "refresh_time", 4096, NULL, 1, NULL);                                     // Create task to refresh time displayed on screen
@@ -374,7 +303,6 @@ void app_main(void)
     detect_charge_status();
 
     // Connect WiFi
-    ESP_ERROR_CHECK(nvs_flash_init());
     wifi_connect_init(&wifi_connected_cb, &wifi_disconnected_cb);
     wifi_connect_sta(system_status.wifi_ssid, system_status.wifi_password, WIFI_CONNECT_TIMEOUT_MS);
 
@@ -523,6 +451,12 @@ static void enter_deep_sleep(void)
     if (system_status.wifi_status)
     {
         wifi_disconnect();
+    }
+
+    // Stop BLE
+    if (system_status.BLE_advertisement_status)
+    {
+        stop_ble();
     }
 
     // Suspend screen refresh task
@@ -680,6 +614,12 @@ static void battery_voltage_sampling(void *params)
                     system_status.battery_estimated_soc = 1;
                     strcpy(battery_sub_3.value, "100%");
                     xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits);
+                    if (battery_level_descriptor_config != 0x0000)
+                    {
+                        uint8_t battery_level = 100;
+                        struct os_mbuf *om = ble_hs_mbuf_from_flat(&battery_level, sizeof(battery_level));
+                        ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_battery_level_val_handle, om);
+                    }
                 }
             }
             else if ((system_status.battery_voltage < 3.875) && (system_status.battery_voltage >= 3.667))
@@ -689,6 +629,12 @@ static void battery_voltage_sampling(void *params)
                     system_status.battery_estimated_soc = 2;
                     strcpy(battery_sub_3.value, "75%");
                     xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits);
+                    if (battery_level_descriptor_config != 0x0000)
+                    {
+                        uint8_t battery_level = 75;
+                        struct os_mbuf *om = ble_hs_mbuf_from_flat(&battery_level, sizeof(battery_level));
+                        ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_battery_level_val_handle, om);
+                    }
                 }
             }
             else if ((system_status.battery_voltage < 3.667) && (system_status.battery_voltage >= 3.56))
@@ -698,6 +644,12 @@ static void battery_voltage_sampling(void *params)
                     system_status.battery_estimated_soc = 3;
                     strcpy(battery_sub_3.value, "50%");
                     xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits);
+                    if (battery_level_descriptor_config != 0x0000)
+                    {
+                        uint8_t battery_level = 50;
+                        struct os_mbuf *om = ble_hs_mbuf_from_flat(&battery_level, sizeof(battery_level));
+                        ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_battery_level_val_handle, om);
+                    }
                 }
             }
             else if ((system_status.battery_voltage < 3.56) && (system_status.battery_voltage >= 3.42))
@@ -707,6 +659,12 @@ static void battery_voltage_sampling(void *params)
                     system_status.battery_estimated_soc = 4;
                     strcpy(battery_sub_3.value, "25%");
                     xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits);
+                    if (battery_level_descriptor_config != 0x0000)
+                    {
+                        uint8_t battery_level = 25;
+                        struct os_mbuf *om = ble_hs_mbuf_from_flat(&battery_level, sizeof(battery_level));
+                        ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_battery_level_val_handle, om);
+                    }
                 }
             }
             else
@@ -716,9 +674,16 @@ static void battery_voltage_sampling(void *params)
                     system_status.battery_estimated_soc = 5;
                     strcpy(battery_sub_3.value, "<5%");
                     xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits);
+                    if (battery_level_descriptor_config != 0x0000)
+                    {
+                        uint8_t battery_level = 5;
+                        struct os_mbuf *om = ble_hs_mbuf_from_flat(&battery_level, sizeof(battery_level));
+                        ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_battery_level_val_handle, om);
+                    }
                 }
             }
         }
+
         xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_BATTERY_VOLTAGE_CHANGE, eSetBits);
         vTaskDelay(pdMS_TO_TICKS(BATTERY_VOLTAGE_SAMPLE_PERIOD));
     }
@@ -773,6 +738,7 @@ static void SD_card_detect_task(void *params)
             ESP_LOGI("SDMMC", "Detected the insertion of SD Card");
             if (system_status.sd_connected == 0)
             {
+                vTaskDelay(pdMS_TO_TICKS(100));  // Compensate the time interval between card detected signal and the pins getting properly contacted
                 if (sd_card_init(PIN_SD_CLK, PIN_SD_CMD, PIN_SD_DAT0, PIN_SD_DAT1, PIN_SD_DAT2, PIN_SD_DAT3) == ESP_OK)
                 {
                     system_status.sd_connected = 1;
@@ -1169,7 +1135,7 @@ static void log_sync_data(int64_t timestamp, uint16_t sync_num, uint16_t point_o
     fclose(fptr);
 }
 
-// ------------------------------------------ Functions for on-board IMU (To be implemented) --------------------------------------------
+// ------------------------------------------ Functions for on-board IMU --------------------------------------------
 // Function to configure on-board IMU
 static esp_err_t icm20948_configure(icm20948_acce_fs_t acce_fs, icm20948_gyro_fs_t gyro_fs)
 {
@@ -1235,10 +1201,16 @@ static esp_err_t icm20948_configure(icm20948_acce_fs_t acce_fs, icm20948_gyro_fs
 }
 
 // Function to log IMU Data
-static void log_IMU_data(icm20948_acce_value_t acce, icm20948_gyro_value_t gyro)
+static void IRAM_ATTR log_IMU_data(icm20948_acce_value_t acce, icm20948_gyro_value_t gyro)
 {
     int64_t timestamp = time_client_get_UNIX_timestamp_ms();
     fprintf(fptr_imu, "%" PRId64 ",%f,%f,%f,%f,%f,%f\n", timestamp, acce.acce_x, acce.acce_y, acce.acce_z, gyro.gyro_x, gyro.gyro_y, gyro.gyro_z);
+    samples_collected_before_fsync ++;
+    if (samples_collected_before_fsync == IMU_DATA_AUTOSAVE_SAMPLES)
+    {
+        samples_collected_before_fsync = 0;
+        fsync(fdes_imu);  // autosave
+    }
 }
 
 // Function to read IMU Data
@@ -1254,10 +1226,11 @@ void icm_read_task(void *params)
             ESP_ERROR_CHECK(icm20948_get_gyro(icm20948, &gyro));
             log_IMU_data(acce, gyro);
 
-            vTaskDelay(pdMS_TO_TICKS(DEFAULT_ONBOARD_IMU_SAMPLE_PERIOD));
+            vTaskDelay(pdMS_TO_TICKS(system_status.onboard_imu_sample_period));
         }
         else
         {
+            samples_collected_before_fsync = 0;
             vTaskSuspend(NULL);
         }
     }
@@ -1313,6 +1286,7 @@ static void toggle_on_board_imu(void)
 
         strcpy(FM_sub_8.value, "OFF");
         system_status.onboard_imu_status = 0;
+        vTaskDelay(pdMS_TO_TICKS(5));  // solve spinlock_acquire issue
         fclose(fptr_imu);
         fptr_imu = NULL;
         ESP_ERROR_CHECK(icm20948_sleep(icm20948));
@@ -1344,6 +1318,7 @@ static esp_err_t create_file_onboard_IMU_data(struct tm current_time)
         ESP_LOGE("FATFS", "Failed to create file %s", file_IMUData_path);
         return ESP_FAIL;
     }
+    fdes_imu = fileno(fptr_imu);
 
     // Write first row
     fprintf(fptr_imu, "Timestamp,ax,ay,az,gx,gy,gz\n");
@@ -1568,7 +1543,7 @@ static void screen_refresh(void *params)
                 }
             }
 
-            if (system_status.BLE_status)
+            if (system_status.BLE_connection_status)
             {
                 u8g2_DrawGlyph(&u8g2, SCREEN_WIDTH - 34, MENU_Y, ICON_BT_CONNECTED);
             }
@@ -1580,7 +1555,7 @@ static void screen_refresh(void *params)
             }
 
             u8g2_SendBuffer(&u8g2);
-            ESP_LOGI("Screen", "Screen Refreshed, state = %lu, key = %lu", state, ((sub1_disp != NULL ? sub1_disp->key : 0) | (sub2_disp != NULL ? sub2_disp->key : 0) | (sub3_disp != NULL ? sub3_disp->key : 0)));
+            ESP_LOGI("Screen", "Screen Refreshed, state = %#lx, key = %#lx", state, ((sub1_disp != NULL ? sub1_disp->key : 0) | (sub2_disp != NULL ? sub2_disp->key : 0) | (sub3_disp != NULL ? sub3_disp->key : 0)));
         }
 
         // Pause task when device is going to sleep
@@ -1588,6 +1563,91 @@ static void screen_refresh(void *params)
         {
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
+    }
+}
+
+/*Callback function to update the screen, trigger by BLE GATT operations specifically
+  Events:
+  0: BLE connection status change
+  1: New Wi-Fi SSID being written
+  2: New Point of Interest being written
+  3: New Maximum Synchronisation Error being written
+  4: New Target IMU Sample Period being written
+  5: New Synchronisation Signal Pulse Width being written
+  6: New On-board IMU sample period being written
+*/
+static void update_screen_from_BLE_cb(uint8_t event)
+{
+    switch (event)
+    {
+        case 0:
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_FORCE_REFRESH, eSetBits); // Request refresh
+            break;
+        case 1:
+            strcpy(WiFi_sub_2.value, system_status.wifi_ssid);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_WIFI_SSID_CHANGE, eSetBits); // Request refresh
+            break;
+        case 2:
+            sprintf(FM_sub_3.value, "%d", system_status.poi);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_POI_CHANGE, eSetBits); // Request refresh
+            break;
+        case 3:
+            sprintf(FM_sub_4.value, "%.1fms", system_status.maximum_sync_error);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_MAX_SYNC_ERROR_CHANGE, eSetBits); // Request refresh
+            
+            calculate_sync_signal_duration();  // Update signal duration value
+            sprintf(FM_sub_7.value, "%.3fs", system_status.sync_signal_duration / 1000);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_SYNC_SIGNAL_DURATION_CHANGE, eSetBits); // Request refresh
+
+            // Notify new sync signal duration via BLE
+            if (sync_signal_duration_descriptor_config != 0x0000)
+            {
+                char char_buffer[16];
+                sprintf(char_buffer, "%.3f", system_status.sync_signal_duration);
+                struct os_mbuf *om = ble_hs_mbuf_from_flat(char_buffer, strlen(char_buffer));
+                ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_sync_signal_duration_val_handle, om);
+            }
+            break;
+        case 4:
+            sprintf(FM_sub_5.value, "%.1fms", system_status.target_imu_sample_period);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_TARGET_IMU_SAMPLE_PERIOD_CHANGE, eSetBits); // Request refresh
+            
+            calculate_sync_signal_duration();  // Update signal duration value
+            sprintf(FM_sub_7.value, "%.3fs", system_status.sync_signal_duration / 1000);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_SYNC_SIGNAL_DURATION_CHANGE, eSetBits); // Request refresh
+
+            // Notify new sync signal duration via BLE
+            if (sync_signal_duration_descriptor_config != 0x0000)
+            {
+                char char_buffer[16];
+                sprintf(char_buffer, "%.3f", system_status.sync_signal_duration);
+                struct os_mbuf *om = ble_hs_mbuf_from_flat(char_buffer, strlen(char_buffer));
+                ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_sync_signal_duration_val_handle, om);
+            }
+            break;
+        case 5:
+            sprintf(FM_sub_6.value, "%.1fms", system_status.sync_signal_pulse_width);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_SYNC_SIGNAL_PULSE_WIDTH_CHANGE, eSetBits); // Request refresh
+
+            calculate_sync_signal_duration();  // Update signal duration value
+            sprintf(FM_sub_7.value, "%.3fs", system_status.sync_signal_duration / 1000);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_SYNC_SIGNAL_DURATION_CHANGE, eSetBits); // Request refresh
+
+            // Notify new sync signal duration via BLE
+            if (sync_signal_duration_descriptor_config != 0x0000)
+            {
+                char char_buffer[16];
+                sprintf(char_buffer, "%.3f", system_status.sync_signal_duration);
+                struct os_mbuf *om = ble_hs_mbuf_from_flat(char_buffer, strlen(char_buffer));
+                ble_gattc_notify_custom(conn_hdl_ext, gatt_chr_sync_signal_duration_val_handle, om);
+            }
+            break;
+        case 6:
+            sprintf(FM_sub_9.value, "%dms", system_status.onboard_imu_sample_period);
+            xTaskNotify(screen_refresh_notification_handler, REFRESH_EVENT_ONBOARD_IMU_SAMPLE_PERIOD_CHANGE, eSetBits); // Request refresh
+            break;
+        default:
+            break;
     }
 }
 

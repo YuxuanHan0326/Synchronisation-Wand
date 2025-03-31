@@ -91,7 +91,7 @@ struct tm time_client_get_time(void)
 }
 
 // Get millisecond of current time
-int64_t time_client_get_UNIX_timestamp_ms(void)
+int64_t IRAM_ATTR time_client_get_UNIX_timestamp_ms(void)
 {
     struct timeval tv_now;
     gettimeofday(&tv_now, NULL);
