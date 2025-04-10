@@ -8,6 +8,15 @@
 - [Flash the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#flash-the-firmware)
 - [Configure Parameters of the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#configure-parameters-of-the-firmware)
 
+## If You Are A Final Year Project Assessor
+This GitHub page contains the project file for the Synchronisation Wand design, and the project files for the verification platform design of the encoded EMP synchronisation method. For fast access:
+- [Synchronisation Wand Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Firmware)
+- [Synchronisation Wand PCB](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/PCB%20V1)
+- [Data Processing Script for Verification Platform](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Source%20Data%20and%20Processing%20Scripts)
+- [Collected Source Data](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Source%20Data%20and%20Processing%20Scripts)
+- [Verilog Implementation Files for Testbed](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Testbed%20Project%20File/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new)
+
+
 ## Introduction
 The *Synchronisation Wand* is an open-source hardware solution for synchronising multiple wireless inertial measurement unit sensors (IMU) using their onboard magnetometers. The device combines an ESP32-S3 micro-controller unit with an electromagnetic generator to create an encoded electromagnetic event which can be used to synchronise multiple IMU devices. The device also includes an onboard IMU, allowing the user to track the motion of the wand as well as perform a kinetic synchronising event.
 
