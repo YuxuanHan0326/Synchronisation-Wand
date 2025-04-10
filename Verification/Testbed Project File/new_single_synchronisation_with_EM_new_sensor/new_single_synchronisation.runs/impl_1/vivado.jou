@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Wed Mar  5 23:56:05 2025
+# Process ID         : 16156
+# Current directory  : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/impl_1
+# Command line       : vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file           : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/impl_1/top.vdi
+# Journal file       : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/impl_1\vivado.jou
+# Running On         : HanYX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 22631
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 185H
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 22
+# Host memory        : 33745 MB
+# Swap memory        : 7488 MB
+# Total Virtual      : 41233 MB
+# Available Virtual  : 8190 MB
+#-----------------------------------------------------------
+source top.tcl -notrace

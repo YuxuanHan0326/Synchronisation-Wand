@@ -1,0 +1,1380 @@
+{
+    "ltx_root": {
+        "version": 4,
+        "minor": 0,
+        "ltx_data": [
+            {
+                "name": "EDA_PROBESET",
+                "active": true,
+                "debug_cores": [
+                    {
+                        "type": "XSDB_V3",
+                        "name": "dbg_hub",
+                        "spec": "labtools_xsdbm_v3",
+                        "clk_input_freq_hz": "28000002"
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "ILA",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 0,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "7C6A6FE445255A57804F5689CD836BF4",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 0,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_TX_Byte",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_TX_Byte[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_TX_Byte[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 1,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_RX_Byte",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_RX_Byte[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_RX_Byte[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "reset_IBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "IMU1_MOSI_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe4",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "IMU1_MISO_IBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe5",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 5,
+                                "nets": [
+                                    {
+                                        "name": "IMU1_SCLK_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe6",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 6,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_TX_Ready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe7",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 7,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_RX_Valid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe8",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 8,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_TX_Valid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe9",
+                                "id": 9,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 5,
+                                "portIndex": 9,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_current_state",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_current_state[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_current_state[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_current_state[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_current_state[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_current_state[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_current_state[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe10",
+                                "id": 10,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 10,
+                                "nets": [
+                                    {
+                                        "name": "IMU1_trig_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe11",
+                                "id": 11,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 11,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_bytes_transmitted",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_bytes_transmitted[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe12",
+                                "id": 12,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 12,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_timer_IR_flg",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe13",
+                                "id": 13,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 13,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_TX_enable",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe14",
+                                "id": 14,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 14,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_custom_trigger",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe15",
+                                "id": 15,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 15,
+                                "nets": [
+                                    {
+                                        "name": "IMU1_CS_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe16",
+                                "id": 16,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 199,
+                                "portIndex": 16,
+                                "nets": [
+                                    {
+                                        "name": "w_EM_output_datapack",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_EM_output_datapack[199]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[198]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[197]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[196]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[195]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[194]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[193]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[192]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[191]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[190]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[189]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[188]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[187]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[186]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[185]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[184]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[183]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[182]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[181]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[180]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[179]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[178]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[177]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[176]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[175]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[174]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[173]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[172]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[171]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[170]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[169]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[168]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[167]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[166]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[165]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[164]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[163]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[162]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[161]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[160]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[159]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[158]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[157]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[156]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[155]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[154]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[153]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[152]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[151]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[150]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[149]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[148]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[147]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[146]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[145]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[144]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[143]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[142]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[141]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[140]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[139]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[138]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[137]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[136]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[135]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[134]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[133]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[132]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[131]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[130]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[129]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[128]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[127]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[126]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[125]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[124]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[123]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[122]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[121]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[120]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[119]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[118]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[117]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[116]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[115]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[114]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[113]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[112]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[111]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[110]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[109]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[108]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[107]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[106]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[105]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[104]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[103]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[102]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[101]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[100]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[99]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[98]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[97]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[96]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[95]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[94]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[93]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[92]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[91]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[90]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[89]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[88]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[87]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[86]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[85]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[84]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[83]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[82]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[81]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[80]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[79]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[78]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[77]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[76]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[75]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[74]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[73]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[72]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[71]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[70]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[69]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[68]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[67]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[66]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[65]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[64]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[63]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[62]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[61]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[60]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[59]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[58]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[57]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[56]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[55]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[54]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[53]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[52]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[51]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[50]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[49]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[48]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[47]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[46]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[45]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[44]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[43]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[42]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[41]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[40]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[39]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[38]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[37]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[36]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[35]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[34]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[33]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[32]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[31]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[30]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[29]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[28]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[27]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[26]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[25]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[24]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[23]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[22]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[21]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[20]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[19]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[18]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[17]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[16]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[15]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[14]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[13]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[12]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[11]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[10]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[9]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[8]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[7]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[6]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[5]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[4]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[3]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[2]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[1]"
+                                            },
+                                            {
+                                                "name": "w_EM_output_datapack[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe17",
+                                "id": 17,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 17,
+                                "nets": [
+                                    {
+                                        "name": "w_EM_package_valid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe18",
+                                "id": 18,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 18,
+                                "nets": [
+                                    {
+                                        "name": "uart_rx_out_OBUF",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe19",
+                                "id": 19,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 9,
+                                "portIndex": 19,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_fifo_data_count",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[9]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[8]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_data_count[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe20",
+                                "id": 20,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 20,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_fifo_dout",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_fifo_dout[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_fifo_dout[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe21",
+                                "id": 21,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 21,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_fifo_rd_en",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe22",
+                                "id": 22,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 7,
+                                "portIndex": 22,
+                                "nets": [
+                                    {
+                                        "name": "w_UART_TX_Byte",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_UART_TX_Byte[7]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[6]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[5]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[4]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[3]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[2]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[1]"
+                                            },
+                                            {
+                                                "name": "w_UART_TX_Byte[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe23",
+                                "id": 23,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 23,
+                                "nets": [
+                                    {
+                                        "name": "w_TX_DV",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe24",
+                                "id": 24,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 24,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_interrupt_synchronised",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe25",
+                                "id": 25,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 47,
+                                "portIndex": 25,
+                                "nets": [
+                                    {
+                                        "name": "w_IMU1_output_sample",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "w_IMU1_output_sample[47]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[46]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[45]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[44]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[43]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[42]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[41]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[40]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[39]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[38]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[37]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[36]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[35]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[34]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[33]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[32]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[31]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[30]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[29]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[28]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[27]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[26]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[25]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[24]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[23]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[22]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[21]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[20]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[19]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[18]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[17]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[16]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[15]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[14]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[13]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[12]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[11]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[10]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[9]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[8]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[7]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[6]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[5]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[4]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[3]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[2]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[1]"
+                                            },
+                                            {
+                                                "name": "w_IMU1_output_sample[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

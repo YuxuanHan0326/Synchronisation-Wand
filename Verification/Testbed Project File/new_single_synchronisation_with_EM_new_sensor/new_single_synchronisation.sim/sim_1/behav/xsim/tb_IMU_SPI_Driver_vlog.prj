@@ -1,0 +1,15 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../new_single_synchronisation.srcs/sources_1/new/IMU_SPI_Driver.v" \
+"../../../../new_single_synchronisation.srcs/sources_1/new/SPI_Master_With_Single_CS.v" \
+"../../../../new_single_synchronisation.srcs/sources_1/new/SPI_driver.v" \
+"../../../../new_single_synchronisation.srcs/sources_1/new/lut_256.v" \
+
+sv xil_defaultlib  \
+"../../../../new_single_synchronisation.srcs/sim_1/new/IMU_SPI_Driver_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Sun Feb 23 21:55:14 2025
+# Process ID         : 8884
+# Current directory  : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/ila_0_synth_1
+# Command line       : vivado.exe -log ila_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ila_0.tcl
+# Log file           : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/ila_0_synth_1/ila_0.vds
+# Journal file       : D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.runs/ila_0_synth_1\vivado.jou
+# Running On         : HanYX
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 22631
+# Processor Detail   : Intel(R) Core(TM) Ultra 9 185H
+# CPU Frequency      : 3072 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 22
+# Host memory        : 33745 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38845 MB
+# Available Virtual  : 18326 MB
+#-----------------------------------------------------------
+source ila_0.tcl -notrace

@@ -1,0 +1,12 @@
+0.7
+2020.2
+Nov  8 2024
+22:36:57
+D:/new_single_synchronisation_with_EM/new_single_synchronisation.srcs/sim_1/new/EM_Controller_tb.v,1738595030,verilog,,,,EM_Controller_tb,,,,,,,,
+D:/new_single_synchronisation_with_EM/new_single_synchronisation.srcs/sources_1/new/EM_Controller.v,1738594814,verilog,,D:/new_single_synchronisation_with_EM/new_single_synchronisation.srcs/sim_1/new/EM_Controller_tb.v,,EM_Controller,,,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.sim/sim_1/behav/xsim/glbl.v,1708598507,verilog,,,,glbl,,uvm,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sim_1/new/IMU_SPI_Driver_tb.sv,1740346912,systemVerilog,,,,tb_IMU_SPI_Driver,,uvm,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/IMU_SPI_Driver.v,1741209579,verilog,,D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/SPI_Master_With_Single_CS.v,,IMU_SPI_Driver,,uvm,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/SPI_Master_With_Single_CS.v,1732465238,verilog,,D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/SPI_driver.v,,SPI_Master_With_Single_CS,,uvm,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/SPI_driver.v,1732461036,verilog,,D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/lut_256.v,,SPI_Master,,uvm,,,,,,
+D:/new_single_synchronisation_with_EM_new_sensor/new_single_synchronisation.srcs/sources_1/new/lut_256.v,1740346708,verilog,,,,lut_256,,uvm,,,,,,

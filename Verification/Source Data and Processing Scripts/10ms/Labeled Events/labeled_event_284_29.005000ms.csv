@@ -1,0 +1,8 @@
+Pulse_No_IMU1,Number_of_Samples_IMU1,Marker_IMU1,Leading_Edge_Sample_IMU1,Anomalous_IMU1,Extra_Sample_Pulse_IMU1,Pulse_No_IMU2,Number_of_Samples_IMU2,Marker_IMU2,Leading_Edge_Sample_IMU2,Anomalous_IMU2,Extra_Sample_Pulse_IMU2
+0,9,+,1,0,0,0,8,=,0,0,0
+1,8,=,0,0,0,1,8,=,0,0,0
+2,8,=,0,0,0,2,8,=,0,0,0
+3,9,+,0,0,1,3,8,=,0,0,0
+4,8,=,0,0,0,4,9,+,1,0,1
+5,8,=,0,0,0,5,8,=,0,0,0
+6,8,=,0,0,0,6,8,=,0,0,0
