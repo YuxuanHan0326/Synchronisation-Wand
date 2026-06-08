@@ -73,6 +73,20 @@ To avoid data loss, the user should terminate the synchronisation group, turn of
 ### Requirements
 To change and rebuild the firmware, the Espressif's IoT Development Framework (ESP-IDF) is needed. Installation instructions for the latest version of the ESP-IDF can be found in [this documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/). The firmware is tested on ESP-IDF version 5.2.1.
 
+### ESP32S3 External Oscillator issue in ESP-IDF 5.2.1
+ESP-IDF 5.2.1 has an ESP32-S3 RTC 32 kHz external oscillator setup issue: the clock tree code applies the internal 32 kHz crystal driver settings to the external oscillator path. On this hardware, the default values do not reliably drive the RTC slow clock.
+
+If you build with ESP-IDF 5.2.1, manually override the XTAL32K configuration in the ESP-IDF clock tree source with these recommended starting values:
+
+```c
+.dac  = 0,
+.dres = 0,
+.dgm  = 0,
+.dbuf = 1,
+```
+
+Alternatively, try a newer ESP-IDF release, where the ESP32-S3 external oscillator path may already be fixed. To confirm whether the oscillator started correctly, check the warning log printed during device power-up. If the RTC 32 kHz oscillator is not detected, the firmware will report a startup warning and fall back to the internal RTC clock source.
+
 ### Build and Flash using UART
 By default, the device can be flashed using UART. The user can connect the auxiliary UART pins to the computer through a USB-Serial converter. Ensure that the signal line voltage of the converter is set to 3.3V before connecting to the device.
 
@@ -105,4 +119,17 @@ idf.py monitor
 The device can also being build and flashed to the device via USB 2.0 full speed, but requires extra settings. Please navigate to [this documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-guides/dfu.html) for details.
 
 ## Configure Parameters of the Firmware
-Currently, the parameters of the firmware (e.g. Synchronisation pulse properties, On board IMU configurations, etc.) can only be configured by changing the marcos in `user_config.h` and updated to the board by rebuilding and reflashing the firmware. We are currently developing the BLE and smartphone app which can be used to configure the parameters much easier.
+The compile-time defaults are defined in [`Firmware/main/user_config.h`](./Firmware/main/user_config.h). These values are used as the firmware's initial configuration after a build/flash, but they are no longer the only way to configure the device.
+
+At runtime, the firmware exposes a BLE GATT interface. After powering the device, connect with a BLE client to the device named `SYNCHRONISATION WAND`, then read or write the relevant characteristics:
+
+| BLE service | Runtime parameters |
+| --- | --- |
+| WiFi Service | WiFi SSID and WiFi password. |
+| Synchronisation Parameters Service | Point of interest, maximum sync error, target IMU sample period, and sync signal pulse width. |
+| Synchronisation Parameters Service | Sync signal duration is read/notify only. It is calculated by the firmware from the synchronisation settings. |
+| On-board IMU Settings Service | On-board IMU status is read only; on-board IMU sample period is writable. |
+
+WiFi values and floating-point synchronisation parameters are transferred as strings. Integer parameters use the raw GATT value type implemented in the firmware. The current BLE service UUIDs, characteristic UUIDs, access permissions, and value handling are defined in [`Firmware/main/ble_gatt.h`](./Firmware/main/ble_gatt.h) and [`Firmware/main/ble_gatt.c`](./Firmware/main/ble_gatt.c).
+
+For more background on the verification platform, encoded EMP synchronisation verification, data processing workflow, and analysis, see the [Final Report](./Resources/docs/Final_Report.pdf).
