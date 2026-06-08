@@ -1,6 +1,7 @@
 # Synchronisation-Wand
 - [Introduction](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#introduction)
 - [Related Publications](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#related-publications)
+- [Project Files and Documentation](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#project-files-and-documentation)
 - [3D Design Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#3d-design-overview)
 - [Screen Overview](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#screen-overview)
 - [PCB Design](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#pcb-design)
@@ -8,13 +9,17 @@
 - [Flash the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#flash-the-firmware)
 - [Configure Parameters of the Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand?tab=readme-ov-file#configure-parameters-of-the-firmware)
 
-## If You Are A Final Year Project Assessor
-This GitHub page contains the project file for the Synchronisation Wand design, and the project files for the verification platform design of the encoded EMP synchronisation method. For fast access:
+## Project Files and Documentation
+This repository contains the Synchronisation Wand hardware and firmware, plus the verification platform for the encoded EMP synchronisation method. For fast access:
 - [Synchronisation Wand Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Firmware)
 - [Synchronisation Wand PCB](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/PCB%20V1)
 - [Data Processing Script for Verification Platform](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/DataProcessing/scripts)
 - [Collected Source Data](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/DataProcessing/data)
 - [Verilog Implementation Files for Testbed](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Testbed/new_single_synchronisation.srcs/sources_1/new)
+- [Final Report](./Resources/docs/Final_Report.pdf)
+- [Presentation Poster](./Resources/docs/Presentation_Poster.pdf)
+
+The related publication focuses mainly on the Synchronisation Wand device and hardware design. The final report is complementary and covers the verification platform, encoded EMP synchronisation verification, data processing workflow, and analysis in more detail. The presentation poster is a concise visual summary of the verification work.
 
 
 ## Introduction
@@ -32,26 +37,26 @@ For how the electromagnetic synchronising method works:
 - [A magnetometer-based method for in-situ syncing of wearable inertial measurement units](https://doi.org/10.3389/fcomp.2024.1385392)
 
 ## 3D Design Overview
-![plot](./Resources/CAD_design.jpg)
+![plot](./Resources/images/CAD_design.jpg)
 
 ## Screen Overview
-![plot](./Resources/Screen_Overview.png)
+![plot](./Resources/images/Screen_Overview.png)
 
 ## PCB Design
 The PCB of the synchronisation wand is designed using the open sourced PCB design software *KiCad*. The PCB files are completely open-sourced.
 
 ### Schematic
-![plot](./Resources/ESP32S3_PCB_V1_Schematic.png)
+![plot](./Resources/images/ESP32S3_PCB_V1_Schematic.png)
 
 ### Layout
-![plot](./Resources/pcb%20overview.jpg)
-![plot](./Resources/Layout_Front.png)
-![plot](./Resources/Layout_Back.png)
+![plot](./Resources/images/pcb%20overview.jpg)
+![plot](./Resources/images/Layout_Front.png)
+![plot](./Resources/images/Layout_Back.png)
 
 ### Stack-up Information
 This device uses a 4 layer pcb, with a stack up of Signal-GND-GND-Signal.
 The physical stack up of the pcb board is shown below:
-![plot](./Resources/PCB_Physical_Stackup.png)
+![plot](./Resources/images/PCB_Physical_Stackup.png)
 
 ## Basic Controls
 - Press "MENU" button to switch between menus.
