@@ -1,13 +1,20 @@
 import serial
 import struct
 import csv
+from pathlib import Path
+
+
+SERIAL_PORT = "COM5"
+SCRIPT_DIR = Path(__file__).resolve().parent
+RUNTIME_DIR = SCRIPT_DIR.parent / "runtime"
 
 
 def main():
     # Configure serial port
-    ser = serial.Serial('COM5', baudrate=115200, timeout=1)  # Replace 'COMx' with your port
-    log_file_main = "imu_data_log.csv"
-    log_file_EM = "imu_EM_log.csv"
+    ser = serial.Serial(SERIAL_PORT, baudrate=115200, timeout=1)  # Replace with your port
+    RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
+    log_file_main = RUNTIME_DIR / "imu_data_log.csv"
+    log_file_EM = RUNTIME_DIR / "imu_EM_log.csv"
 
     sync_event_count = 1
 

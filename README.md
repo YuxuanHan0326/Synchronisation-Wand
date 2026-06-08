@@ -12,8 +12,8 @@
 This GitHub page contains the project file for the Synchronisation Wand design, and the project files for the verification platform design of the encoded EMP synchronisation method. For fast access:
 - [Synchronisation Wand Firmware](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Firmware)
 - [Synchronisation Wand PCB](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/PCB%20V1)
-- [Data Processing Script for Verification Platform](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Source%20Data%20and%20Processing%20Scripts)
-- [Collected Source Data](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Source%20Data%20and%20Processing%20Scripts)
+- [Data Processing Script for Verification Platform](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/DataProcessing/scripts)
+- [Collected Source Data](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/DataProcessing/data)
 - [Verilog Implementation Files for Testbed](https://github.com/YuxuanHan0326/Synchronisation-Wand/tree/main/Verification/Testbed/new_single_synchronisation.srcs/sources_1/new)
 
 

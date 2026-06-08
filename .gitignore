@@ -19,6 +19,7 @@ build/
 # Verification script runtime outputs
 imu_data_log.csv
 imu_EM_log.csv
+Verification/DataProcessing/runtime/
 
 # Vivado project output directories
 *.cache/

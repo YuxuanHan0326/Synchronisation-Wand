@@ -3,6 +3,8 @@ clear;
 clc;
 
 % Configure Path (e.g. the 2ms folder) and sync event
+script_dir = fileparts(mfilename('fullpath'));
+data_dir = fullfile(script_dir, '..', 'data');
 folder_name = '0.5ms';
 max_sync_error_ms = 0.5;
 imu1_invert_axis = false;
@@ -17,7 +19,7 @@ Inter_IMU_time_offset_ms = 2.75;
 offset_compensation_ms = 0.705;  % add to theoretical offset. 0.705
 
 % Define the target folder
-targetPath = sprintf('./%s/', folder_name); % Change to your folder path if needed
+targetPath = fullfile(data_dir, folder_name); % Change folder_name above if needed
 
 % Display Info?
 display_plot = false;
@@ -283,7 +285,7 @@ for k = 1:length(csvFiles)
         'VariableNames', {'Pulse_No_IMU1', 'Number_of_Samples_IMU1', 'Marker_IMU1', 'Leading_Edge_Sample_IMU1', 'Anomalous_IMU1', 'Extra_Sample_Pulse_IMU1', 'Pulse_No_IMU2', 'Number_of_Samples_IMU2', 'Marker_IMU2', 'Leading_Edge_Sample_IMU2', 'Anomalous_IMU2', 'Extra_Sample_Pulse_IMU2'});
 
     % Write table to CSV file
-    writetable(to_csv_data, sprintf('%s/Labeled Events/labeled_event_%d_%5fms.csv', folder_name, index, offset_IMU1));
+    writetable(to_csv_data, fullfile(targetPath, 'Labeled Events', sprintf('labeled_event_%d_%5fms.csv', index, offset_IMU1)));
 
     % Print confirmation
     fprintf(' *** CSV file has been saved successfully! ***\n');

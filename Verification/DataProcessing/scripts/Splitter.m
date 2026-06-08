@@ -4,10 +4,15 @@ clear all;
 clc;
 
 % Define input CSV files
-csvFileSeparation = 'imu_EM_log.csv';
-csvFileData = 'imu_data_log.csv';
-targetPath = './test_1/'; % Directory where output files are saved
+script_dir = fileparts(mfilename('fullpath'));
+runtime_dir = fullfile(script_dir, '..', 'runtime');
+csvFileSeparation = fullfile(runtime_dir, 'imu_EM_log.csv');
+csvFileData = fullfile(runtime_dir, 'imu_data_log.csv');
+targetPath = fullfile(runtime_dir, 'test_1'); % Directory where output files are saved
 plotting = false;
+if ~exist(targetPath, 'dir')
+    mkdir(targetPath);
+end
 
 % Read the CSV files
 timestamps_data = readtable(csvFileData);
@@ -47,7 +52,7 @@ for i = 1:length(timestamps)-1
     end
     
     % Write the filtered data to a new CSV file
-    outputFile = sprintf('%ssync_event_%d_%.5fms.csv', targetPath, nextIndex + i - 1, offset_ms);
+    outputFile = fullfile(targetPath, sprintf('sync_event_%d_%.5fms.csv', nextIndex + i - 1, offset_ms));
     writetable(eventData, outputFile);
     
     % Extract magnetometer data for plotting

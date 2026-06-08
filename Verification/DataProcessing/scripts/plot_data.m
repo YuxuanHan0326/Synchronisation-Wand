@@ -6,7 +6,9 @@ clc
 % Read and plot IMU data from CSV
 
 % Define the CSV file name (update this if needed)
-csvFile = '.\imu_data_log.csv';
+script_dir = fileparts(mfilename('fullpath'));
+runtime_dir = fullfile(script_dir, '..', 'runtime');
+csvFile = fullfile(runtime_dir, 'imu_data_log.csv');
 
 % Read the CSV data
 data = readtable(csvFile);

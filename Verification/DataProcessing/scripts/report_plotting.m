@@ -1,4 +1,6 @@
-data = readmatrix('10ms\Source\imu_EM_log.csv');
+script_dir = fileparts(mfilename('fullpath'));
+data_dir = fullfile(script_dir, '..', 'data');
+data = readmatrix(fullfile(data_dir, '10ms', 'Source', 'imu_EM_log.csv'));
 
 % 提取offset列（第三列）
 offset = data(:,3); 

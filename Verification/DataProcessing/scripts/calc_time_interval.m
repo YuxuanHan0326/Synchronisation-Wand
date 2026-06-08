@@ -5,7 +5,9 @@ clear;
 clc;
 
 % Define the CSV file name
-csvFile = 'imu_data_log.csv';
+script_dir = fileparts(mfilename('fullpath'));
+runtime_dir = fullfile(script_dir, '..', 'runtime');
+csvFile = fullfile(runtime_dir, 'imu_data_log.csv');
 
 % User-defined clock frequency (Hz)
 clockFrequency_Hz = 28e6; % Example: 28 MHz, change as needed

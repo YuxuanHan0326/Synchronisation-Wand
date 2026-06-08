@@ -1,10 +1,12 @@
 % Define parameters
+script_dir = fileparts(mfilename('fullpath'));
+data_dir = fullfile(script_dir, '..', 'data');
 max_sync_error_ms = 0.5;
 T_inter_mag_offset = 2.75;
 T_sample = 40;
 
 % Get list of CSV files in the folder
-folder_path = '0.5ms\Labeled Events\';
+folder_path = fullfile(data_dir, '0.5ms', 'Labeled Events');
 file_list = dir(fullfile(folder_path, '*.csv'));
 
 % Initialize storage for results
