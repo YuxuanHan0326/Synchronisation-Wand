@@ -3,8 +3,8 @@
 #define DEFAULT_TZ "GMT"
 
 // Configure WiFi SSID and password
-#define DEFAULT_WIFI_SSID "YXHan-IoT"
-#define DEFAULT_WIFI_PASSWORD "Yuxuan3264"
+#define DEFAULT_WIFI_SSID "YOUR_WIFI_SSID"
+#define DEFAULT_WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 
 // IMU Synchronisation Settings
 #define DEFAULT_POINT_OF_INTEREST 0

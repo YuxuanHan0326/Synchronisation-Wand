@@ -1,0 +1,41 @@
+# Editor-local files
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Python local artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# ESP-IDF / CMake build outputs
+Firmware/build/
+build/
+
+# Verification script runtime outputs
+imu_data_log.csv
+imu_EM_log.csv
+
+# Vivado project output directories
+*.cache/
+*.gen/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+**/*.srcs/utils_1/imports/
+
+# Vivado logs and journals
+vivado*.log
+vivado*.jou
+*.backup.log
+*.backup.jou
+ip_upgrade.log
+
+# Vivado temporary files
+*.str
+*.xmsgs/

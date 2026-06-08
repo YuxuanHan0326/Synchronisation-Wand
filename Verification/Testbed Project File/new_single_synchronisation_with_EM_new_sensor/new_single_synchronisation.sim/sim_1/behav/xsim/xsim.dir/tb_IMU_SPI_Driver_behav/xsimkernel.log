@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_IMU_SPI_Driver_behav/xsimk.exe -simmode gui -wdb tb_IMU_SPI_Driver_behav.wdb -simrunnum 0 -socket 42378
-Design successfully loaded
-Design Loading Memory Usage: 27552 KB (Peak: 27552 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 28732 KB (Peak: 28732 KB)
-Simulation CPU Usage: 46 ms
