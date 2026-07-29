@@ -40,7 +40,7 @@ static void IRAM_ATTR gpio_isr_cb_TS(void *args);
 static void TS_pushed_task(void *params);
 static void IRAM_ATTR gpio_isr_cb_CHG(void *args);
 static void IRAM_ATTR gpio_isr_cb_SD(void *args);
-static void IRAM_ATTR timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_data);
+static bool IRAM_ATTR timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_data);
 static void CHG_changed_task(void *params);
 static void sync_finished_task(void *params);
 static void SD_card_detect_task(void *params);
@@ -483,7 +483,7 @@ static void enter_deep_sleep(void)
 
 // ------------------------------------------ Functions for GPTimer (Sync Signal Generation) --------------------------------------------
 // ISR for GPTimer
-static void IRAM_ATTR timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_data)
+static bool IRAM_ATTR timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_alarm_event_data_t *edata, void *user_data)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     EM_gpio_status = !EM_gpio_status;
@@ -497,7 +497,9 @@ static void IRAM_ATTR timer_on_alarm_cb(gptimer_handle_t timer, const gptimer_al
         vTaskNotifyGiveFromISR(sync_finished_notification_handler, &xHigherPriorityTaskWoken);
     }
 
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+    // The gptimer driver yields on our behalf based on this return value; it must not be
+    // done manually here as well (that would risk yielding twice for one ISR).
+    return xHigherPriorityTaskWoken == pdTRUE;
 }
 
 // Task triggered when one sync finished
@@ -1446,7 +1448,8 @@ static void screen_refresh(void *params)
     while (true)
     {
         xTaskNotifyWait(0xFFFFFFFF, 0, &state, portMAX_DELAY);
-        if ((state & ((sub1_disp != NULL ? sub1_disp->key : 0) | (sub2_disp != NULL ? sub2_disp->key : 0) | (sub3_disp != NULL ? sub3_disp->key : 0))) != 0)
+        if ((state & REFRESH_EVENT_FORCE_REFRESH) ||
+            (state & ((sub1_disp != NULL ? sub1_disp->key : 0) | (sub2_disp != NULL ? sub2_disp->key : 0) | (sub3_disp != NULL ? sub3_disp->key : 0))) != 0)
         {
             u8g2_ClearBuffer(&u8g2);
             u8g2_SetFont(&u8g2, FONT_MENU);

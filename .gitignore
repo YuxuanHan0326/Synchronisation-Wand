@@ -40,3 +40,13 @@ ip_upgrade.log
 # Vivado temporary files
 *.str
 *.xmsgs/
+
+# Android / Gradle (App/)
+App/local.properties
+App/.gradle/
+App/gradle/wrapper/gradle-wrapper.jar
+App/**/build/
+*.apk
+*.aab
+captures/
+.cxx/
